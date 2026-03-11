@@ -7,6 +7,9 @@ on:
 permissions:
   contents: read
 
+env:
+  IMAGE_TAG: ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}:latest
+   
 jobs:
   deploy:
     name: Deploy
@@ -27,6 +30,6 @@ jobs:
       uses: docker/build-push-action@v6
       with:
         push: true
-        tags: ghcr.io/${{ github.repository_owner }}/${{ github.event.repository_name }}:latest
+        tags: ${{ env.IMAGE_TAG }}
         platforms: linux/amd64, linux/arm64
  
